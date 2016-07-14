@@ -30,13 +30,13 @@ public class Trigger : MonoBehaviour
     // TODO put trigger on their own layer
     // TODO check for the player collider with that object and make sure this flow works
     // if the player collides with the trigger, get the trigger component and call this function with the button they pressed
-    public void InteractWithTrigger(ButtonType button)
+    public void InteractWithTrigger(ButtonType button, Character interacter)
     {
         if (button == _calloutButton)
         {
             if (_object != null)
             {
-                _object.Interact();
+                _object.Interact(interacter);
             }
             else
             {

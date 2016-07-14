@@ -6,5 +6,5 @@ public abstract class InteractableObject : MonoBehaviour
 {
     public Action OnInteractionFinished;
 
-    public abstract void Interact();
+    public abstract void Interact(Character interacter);
 }
