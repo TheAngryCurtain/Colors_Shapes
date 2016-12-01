@@ -17,6 +17,26 @@ public class CharacterFactory : MonoBehaviour
 
     void Start()
     {
+        SpawnObjects();
+    }
 
+    private void SpawnObjects()
+    {
+        QuestFactory factory = FactoryManager.Instance.QuestFactory;
+        QuestFactory.Quest currentQuest = factory.ActiveQuest;
+
+        Transform playerStart = currentQuest.StartQuestPoint;
+        Instantiate(playerPrefab, playerStart.position, playerStart.rotation);
+
+        GameObject questObject = currentQuest.QuestEndObject;
+        Transform endPoint = currentQuest.EndQuestPoint;
+        Instantiate(questObject, endPoint.position, endPoint.rotation);
+    }
+
+    public GameObject GetQuestMob(out string mobName)
+    {
+        int mobRoll = FactoryManager.Instance.QuestFactory.RollDie(mobPrefabs.Length);
+        mobName = mobPrefabs[mobRoll].name;
+        return mobPrefabs[mobRoll];
     }
 }
